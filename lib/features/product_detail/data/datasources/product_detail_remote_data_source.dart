@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 
 
-class CartRemoteDataSource {
+class ProductDetailRemoteDataSource {
   final Dio dio;
 
-  CartRemoteDataSource(this.dio);
+  ProductDetailRemoteDataSource(this.dio);
 
-  Future<void> getCartProducts() async {
+  Future<void> getProductDetail() async {
 
   }
 }

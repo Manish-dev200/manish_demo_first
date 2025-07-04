@@ -1,5 +1,5 @@
 
-abstract class CartRepository{
+abstract class CheckoutRepository{
 
   Future<void> getCartProducts();
 

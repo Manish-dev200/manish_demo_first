@@ -1,9 +1,9 @@
 
 
-import '../../data/repositories/cart_repository.dart';
+import '../../data/repositories/checkout_repository.dart';
 
 class GetCartProductUseCase{
-  CartRepository repository;
+  CheckoutRepository repository;
   GetCartProductUseCase(this.repository);
 
   Future<void>call() async {

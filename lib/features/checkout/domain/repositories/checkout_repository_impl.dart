@@ -1,12 +1,12 @@
 
 
-import 'package:demo_first/features/cart/data/datasources/cart_remote_data_source.dart';
 
-import '../../data/repositories/cart_repository.dart';
+import '../../data/datasources/checkout_remote_data_source.dart';
+import '../../data/repositories/checkout_repository.dart';
 
-class CartRepositoryImpl implements CartRepository{
-  CartRemoteDataSource remoteDataSource;
-  CartRepositoryImpl(this.remoteDataSource);
+class CheckoutRepositoryImpl implements CheckoutRepository{
+  CheckoutRemoteDataSource remoteDataSource;
+  CheckoutRepositoryImpl(this.remoteDataSource);
 
   @override
   Future<void> getCartProducts() async {

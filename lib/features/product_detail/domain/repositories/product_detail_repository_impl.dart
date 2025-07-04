@@ -1,16 +1,14 @@
 
+import '../../data/datasources/product_detail_remote_data_source.dart';
+import '../../data/repositories/product_detail_repository.dart';
 
-import 'package:demo_first/features/cart/data/datasources/cart_remote_data_source.dart';
-
-import '../../data/repositories/cart_repository.dart';
-
-class CartRepositoryImpl implements CartRepository{
-  CartRemoteDataSource remoteDataSource;
-  CartRepositoryImpl(this.remoteDataSource);
+class ProductDetailRepositoryImpl implements ProductDetailRepository{
+  ProductDetailRemoteDataSource remoteDataSource;
+  ProductDetailRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<void> getCartProducts() async {
-    return await remoteDataSource.getCartProducts();
+  Future<void> getProductDetail() async {
+    return await remoteDataSource.getProductDetail();
   }
 
 }

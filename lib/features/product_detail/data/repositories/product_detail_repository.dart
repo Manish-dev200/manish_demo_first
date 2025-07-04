@@ -1,6 +1,6 @@
 
-abstract class CartRepository{
+abstract class ProductDetailRepository{
 
-  Future<void> getCartProducts();
+  Future<void> getProductDetail();
 
 }

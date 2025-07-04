@@ -1,10 +1,10 @@
 
 
 
-import '../../data/repositories/home_repository.dart';
+import '../../data/repositories/dashboard_repository.dart';
 
 class GetProductUseCase{
-  HomeRepository repository;
+  DashboardRepository repository;
   GetProductUseCase(this.repository);
 
   Future<void>call() async {

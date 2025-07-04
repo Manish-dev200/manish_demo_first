@@ -1,12 +1,12 @@
 
 
-import '../../data/repositories/cart_repository.dart';
+import '../../data/repositories/product_detail_repository.dart';
 
-class GetCartProductUseCase{
-  CartRepository repository;
-  GetCartProductUseCase(this.repository);
+class GetProductDetailUseCase{
+  ProductDetailRepository repository;
+  GetProductDetailUseCase(this.repository);
 
   Future<void>call() async {
-    return await repository.getCartProducts();
+    return await repository.getProductDetail();
   }
 }

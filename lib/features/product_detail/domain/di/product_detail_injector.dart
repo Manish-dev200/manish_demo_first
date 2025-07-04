@@ -1,29 +1,29 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:demo_first/core/di/dio_injector.dart';
-import 'package:demo_first/features/cart/data/datasources/cart_remote_data_source.dart';
 
-import 'package:demo_first/features/cart/domain/usecases/get_products_use_case.dart';
-import 'package:demo_first/features/cart/presentation/provider/cart_view_model.dart';
 
-import '../../data/repositories/cart_repository.dart';
-import '../repositories/cart_repository_impl.dart';
+import '../../data/datasources/product_detail_remote_data_source.dart';
+import '../../data/repositories/product_detail_repository.dart';
+import '../../presentation/provider/product_detail_view_model.dart';
+import '../repositories/product_detail_repository_impl.dart';
+import '../usecases/get_product_detail_use_case.dart';
 
 // Remote Data Source
-final cartRemoteDataSourceProvider = Provider<CartRemoteDataSource>(
-      (ref) => CartRemoteDataSource(ref.watch(dioProvider)),
+final productDetailRemoteDataSourceProvider = Provider<ProductDetailRemoteDataSource>(
+      (ref) => ProductDetailRemoteDataSource(ref.watch(dioProvider)),
 );
 
 // Repository
-final cartRepositoryProvider = Provider<CartRepository>(
-      (ref) => CartRepositoryImpl(ref.watch(cartRemoteDataSourceProvider)),
+final productDetailRepositoryProvider = Provider<ProductDetailRepository>(
+      (ref) => ProductDetailRepositoryImpl(ref.watch(productDetailRemoteDataSourceProvider)),
 );
 
 // Use Case
-final getCartProductsUseCase = Provider<GetCartProductUseCase>(
-      (ref) => GetCartProductUseCase(ref.watch(cartRepositoryProvider)),
+final getProductDetailUseCase = Provider<GetProductDetailUseCase>(
+      (ref) => GetProductDetailUseCase(ref.watch(productDetailRepositoryProvider)),
 );
 
 // ViewModel
-final cartViewModelProvider = StateNotifierProvider.autoDispose<CartViewModel,CartState>(
-      (ref) => CartViewModel(ref.watch(getCartProductsUseCase)),
+final productDetailViewModelProvider = StateNotifierProvider.autoDispose<ProductDetailViewModel,ProductDetailState>(
+      (ref) => ProductDetailViewModel(ref.watch(getProductDetailUseCase)),
 );

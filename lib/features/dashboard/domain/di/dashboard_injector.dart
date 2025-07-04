@@ -1,28 +1,28 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:demo_first/core/di/dio_injector.dart';
 
-import '../../data/datasources/home_remote_data_source.dart';
-import '../../data/repositories/home_repository.dart';
-import '../../presentation/provider/home_view_model.dart';
-import '../repositories/home_repository_impl.dart';
+import '../../data/datasources/dashboard_remote_data_source.dart';
+import '../../data/repositories/dashboard_repository.dart';
+import '../../presentation/provider/dashboard_view_model.dart';
+import '../repositories/dashboard_repository_impl.dart';
 import '../usecases/get_product_use_case.dart';
 
 // Remote Data Source
-final homeRemoteDataSourceProvider = Provider<HomeRemoteDataSource>(
-      (ref) => HomeRemoteDataSource(ref.watch(dioProvider)),
+final dashRemoteDataSourceProvider = Provider<DashboardRemoteDataSource>(
+      (ref) => DashboardRemoteDataSource(ref.watch(dioProvider)),
 );
 
 // Repository
-final homeRepositoryProvider = Provider<HomeRepository>(
-      (ref) => HomeRepositoryImpl(ref.watch(homeRemoteDataSourceProvider)),
+final dashRepositoryProvider = Provider<DashboardRepository>(
+      (ref) => DashboardRepositoryImpl(ref.watch(dashRemoteDataSourceProvider)),
 );
 
 // Use Case
 final getProductsUseCase = Provider<GetProductUseCase>(
-      (ref) => GetProductUseCase(ref.watch(homeRepositoryProvider)),
+      (ref) => GetProductUseCase(ref.watch(dashRepositoryProvider)),
 );
 
 // ViewModel
-final cartViewModelProvider = StateNotifierProvider.autoDispose<HomeViewModel,HomeState>(
-      (ref) => HomeViewModel(ref.watch(getProductsUseCase)),
+final dashViewModelProvider = StateNotifierProvider.autoDispose<DashboardViewModel,DashboardState>(
+      (ref) => DashboardViewModel(ref.watch(getProductsUseCase)),
 );

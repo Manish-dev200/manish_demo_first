@@ -1,34 +1,40 @@
 
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/usecases/get_product_detail_use_case.dart';
 
-class ProductDetailState {
+import '../../../../core/di/theme_injector.dart';
+
+class SettingState {
   final bool isLoading;
+  late final  bool isDarkMode;
 
-  ProductDetailState({this.isLoading = false});
+  SettingState({this.isLoading = false,this.isDarkMode=false});
 
-  ProductDetailState copyWith({bool? isLoading}) {
-    return ProductDetailState(isLoading: isLoading ?? this.isLoading);
+  SettingState copyWith({bool? isLoading,bool? isDarkMode}) {
+    return SettingState(
+        isLoading: isLoading ?? this.isLoading,
+        isDarkMode: isDarkMode ?? this.isDarkMode
+    );
   }
 }
 
 
 
-class ProductDetailViewModel extends StateNotifier<ProductDetailState> {
-  final GetProductDetailUseCase getProductDetailUseCase;
-
-  ProductDetailViewModel(this.getProductDetailUseCase) : super(ProductDetailState()) {
-    _loadProductDetail();
+class SettingViewModel extends StateNotifier<SettingState> {
+  SettingViewModel() : super(SettingState()) {
   }
 
-  Future<void> _loadProductDetail() async {
-    state = state.copyWith(isLoading: true);
-    try {
-      final products = await getProductDetailUseCase.call();
-      state = state.copyWith(isLoading: false);
-    } catch (e) {
-      state = state.copyWith(isLoading: false);
+  void changeTheme(bool val, WidgetRef ref) {
+    state=state.copyWith(isDarkMode: val);
+    if(val){
+      ref.read(themeModeProvider.notifier).state = ThemeMode.dark;
+
+    }else{
+      ref.read(themeModeProvider.notifier).state = ThemeMode.light;
     }
+
   }
+
+
 }

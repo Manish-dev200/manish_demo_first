@@ -1,11 +1,11 @@
 
-import '../../data/datasources/home_remote_data_source.dart';
-import '../../data/repositories/home_repository.dart';
+import '../../data/datasources/dashboard_remote_data_source.dart';
+import '../../data/repositories/dashboard_repository.dart';
 
 
-class HomeRepositoryImpl implements HomeRepository{
-  HomeRemoteDataSource remoteDataSource;
-  HomeRepositoryImpl(this.remoteDataSource);
+class DashboardRepositoryImpl implements DashboardRepository{
+  DashboardRemoteDataSource remoteDataSource;
+  DashboardRepositoryImpl(this.remoteDataSource);
 
   @override
   Future<void> getProducts() async {

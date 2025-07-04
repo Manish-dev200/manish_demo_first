@@ -1,5 +1,5 @@
 
-abstract class HomeRepository{
+abstract class DashboardRepository{
 
   Future<void> getProducts();
 
